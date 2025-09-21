@@ -209,9 +209,12 @@ class MainActivity : AppCompatActivity() {
             try {
                 val json = org.json.JSONObject(message)
                 when (json.getString("type")) {
-                    "unlock" -> activity.runOnUiThread {
-                        Log.d("JS_BRIDGE", "🔓 UNLOCK received → stopping lock task")
-                        activity.forceUnlock()
+                    "unlock" -> {
+                        Log.i("WebAppInterface", "Perintah UNLOCK diterima. Aplikasi akan ditutup dalam 500ms.")
+                        // Beri jeda agar UI javascript sempat update (misal: hilangkan spinner)
+                        android.os.Handler(Looper.getMainLooper()).postDelayed({
+                            activity.forceUnlock()
+                        }, 500)
                     }
                     "redirect" -> activity.runOnUiThread {
                         val url = json.getString("url")

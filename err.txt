@@ -1,2 +1,2 @@
-e: file:///D:/Hasil%20Coding/Android%20Rushsafer/app/src/main/java/com/example/rushlesssafer/MainActivity.kt:41:17 Unresolved reference: unlockButton
+e: file:///D:/Hasil%20Coding/Android%20Rushsafer/app/src/main/java/com/example/rushlesssafer/MainActivity.kt:216:42 Unresolved reference: stopPinningAndExit
 Ask Gemini
