@@ -1,0 +1,17 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+id unlock_button
+id webview
+id welcome_text
+layout activity_main
+string app_name
+style Theme.RushlessSafer
+xml backup_rules
+xml data_extraction_rules
