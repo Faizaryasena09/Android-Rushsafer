@@ -62,35 +62,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleIntent(intent: Intent) {
-        val data = intent.data
-        Log.d("MainActivity", "handleIntent: $data")
-        if (intent.action == Intent.ACTION_VIEW && data != null &&
-            data.scheme == "rushless-safer" && data.host == "exam") {
-
-            val urlToLoad = data.getQueryParameter("url")
-            val cookiesToSet = data.getQueryParameter("cookies")
-
-            if (urlToLoad != null) {
-                binding.welcomeText.visibility = View.GONE
-                binding.webview.visibility = View.VISIBLE
-                if (cookiesToSet != null) setCookies(urlToLoad, cookiesToSet)
-                binding.webview.loadUrl(urlToLoad)
-                handler.postDelayed({ updatePinningState() }, 500)
+        if (intent.action == Intent.ACTION_VIEW && intent.data != null) {
+            val urlToLoad = intent.data?.getQueryParameter("url")
+            if (!urlToLoad.isNullOrEmpty()) {
+                Log.d("MainActivity", "Membuka dari deep link. URL: $urlToLoad")
+                showWebView(urlToLoad)
             } else {
-                showWelcome()
+                Log.w("MainActivity", "Deep link tidak valid, URL kosong.")
+                showInstructions()
             }
         } else {
-            showWelcome()
+            Log.d("MainActivity", "Dibuka langsung, menampilkan instruksi.")
+            showInstructions()
         }
     }
 
-    private fun showWelcome() {
-        binding.welcomeText.visibility = View.VISIBLE
+    private fun showWebView(url: String) {
+        binding.instructionsContainer.visibility = View.GONE
+        binding.copyrightText.visibility = View.GONE
+        binding.webview.visibility = View.VISIBLE
+        binding.webview.loadUrl(url)
+    }
+
+    private fun showInstructions() {
         binding.webview.visibility = View.GONE
-        currentUrl = null
-        isCoursePinningActive = false
-        stopLockTaskIfNeeded()
-        updatePinningState()
+        binding.instructionsContainer.visibility = View.VISIBLE
+        binding.copyrightText.visibility = View.VISIBLE
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -111,6 +108,26 @@ class MainActivity : AppCompatActivity() {
                     currentUrl = url
                     Log.d("WebView", "Page finished: $url")
                     updatePinningState()
+                }
+
+                override fun onReceivedError(view: WebView?, request: android.webkit.WebResourceRequest?, error: android.webkit.WebResourceError?) {
+                    super.onReceivedError(view, request, error)
+                    // Hanya proses error untuk frame utama & untuk API level 23+
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && request?.isForMainFrame == true) {
+                        Log.e("WebViewError", "Error loading page: ${error?.description}")
+                        // Cek jika error berhubungan dengan koneksi
+                        when (error?.errorCode) {
+                            WebViewClient.ERROR_HOST_LOOKUP,
+                            WebViewClient.ERROR_CONNECT,
+                            WebViewClient.ERROR_TIMEOUT,
+                            WebViewClient.ERROR_UNKNOWN -> {
+                                runOnUiThread {
+                                    Log.i("WebViewError", "Connection error detected. Forcing unlock.")
+                                    forceUnlock()
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

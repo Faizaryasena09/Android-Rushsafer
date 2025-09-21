@@ -3174,6 +3174,7 @@ id contentPanel
 id contiguous
 id continuousVelocity
 id coordinator
+id copyright_text
 id cos
 id counterclockwise
 id cradle
@@ -3266,6 +3267,8 @@ id immediateStop
 id included
 id indeterminate
 id info
+id instructions_container
+id instructions_text
 id invisible
 id inward
 id italic
@@ -3282,6 +3285,7 @@ id line3
 id linear
 id listMode
 id list_item
+id logo_image
 id m3_side_sheet
 id marquee
 id masked
@@ -3531,7 +3535,6 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id webview
-id welcome_text
 id west
 id withText
 id with_icon
@@ -3733,6 +3736,8 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+mipmap ic_launcher
+mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
 string abc_action_bar_up_description

@@ -3173,6 +3173,7 @@ int id contentPanel 0x7f08007e
 int id contiguous 0x7f08007f
 int id continuousVelocity 0x7f080080
 int id coordinator 0x7f080081
+int id copyright_text 0x7f0801f3
 int id cos 0x7f080082
 int id counterclockwise 0x7f080083
 int id cradle 0x7f080084
@@ -3265,6 +3266,8 @@ int id immediateStop 0x7f0800da
 int id included 0x7f0800db
 int id indeterminate 0x7f0800dc
 int id info 0x7f0800dd
+int id instructions_container 0x7f0801f4
+int id instructions_text 0x7f0801f1
 int id invisible 0x7f0800de
 int id inward 0x7f0800df
 int id italic 0x7f0800e0
@@ -3281,6 +3284,7 @@ int id line3 0x7f0800ea
 int id linear 0x7f0800eb
 int id listMode 0x7f0800ec
 int id list_item 0x7f0800ed
+int id logo_image 0x7f0801f5
 int id m3_side_sheet 0x7f0800ee
 int id marquee 0x7f0800ef
 int id masked 0x7f0800f0
@@ -3530,7 +3534,6 @@ int id view_tree_view_model_store_owner 0x7f0801e3
 int id visible 0x7f0801e4
 int id visible_removing_fragment_view_tag 0x7f0801e5
 int id webview 0x7f0801e6
-int id welcome_text 0x7f0801e7
 int id west 0x7f0801e8
 int id withText 0x7f0801e9
 int id with_icon 0x7f0801ea
@@ -3732,6 +3735,8 @@ int layout select_dialog_item_material 0x7f0b0066
 int layout select_dialog_multichoice_material 0x7f0b0067
 int layout select_dialog_singlechoice_material 0x7f0b0068
 int layout support_simple_spinner_dropdown_item 0x7f0b0069
+int mipmap ic_launcher 0x7f120000
+int mipmap ic_launcher_round 0x7f120001
 int plurals mtrl_badge_content_description 0x7f0d0000
 int string abc_action_bar_home_description 0x7f0e0000
 int string abc_action_bar_up_description 0x7f0e0001

@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,20 +24,33 @@ public final class ActivityMainBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final TextView copyrightText;
+
+  @NonNull
+  public final LinearLayout instructionsContainer;
+
+  @NonNull
+  public final TextView instructionsText;
+
+  @NonNull
+  public final ImageView logoImage;
+
+  @NonNull
   public final Button unlockButton;
 
   @NonNull
   public final WebView webview;
 
-  @NonNull
-  public final TextView welcomeText;
-
-  private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull Button unlockButton,
-      @NonNull WebView webview, @NonNull TextView welcomeText) {
+  private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull TextView copyrightText,
+      @NonNull LinearLayout instructionsContainer, @NonNull TextView instructionsText,
+      @NonNull ImageView logoImage, @NonNull Button unlockButton, @NonNull WebView webview) {
     this.rootView = rootView;
+    this.copyrightText = copyrightText;
+    this.instructionsContainer = instructionsContainer;
+    this.instructionsText = instructionsText;
+    this.logoImage = logoImage;
     this.unlockButton = unlockButton;
     this.webview = webview;
-    this.welcomeText = welcomeText;
   }
 
   @Override
@@ -65,6 +80,30 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.copyright_text;
+      TextView copyrightText = ViewBindings.findChildViewById(rootView, id);
+      if (copyrightText == null) {
+        break missingId;
+      }
+
+      id = R.id.instructions_container;
+      LinearLayout instructionsContainer = ViewBindings.findChildViewById(rootView, id);
+      if (instructionsContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.instructions_text;
+      TextView instructionsText = ViewBindings.findChildViewById(rootView, id);
+      if (instructionsText == null) {
+        break missingId;
+      }
+
+      id = R.id.logo_image;
+      ImageView logoImage = ViewBindings.findChildViewById(rootView, id);
+      if (logoImage == null) {
+        break missingId;
+      }
+
       id = R.id.unlock_button;
       Button unlockButton = ViewBindings.findChildViewById(rootView, id);
       if (unlockButton == null) {
@@ -77,14 +116,8 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.welcome_text;
-      TextView welcomeText = ViewBindings.findChildViewById(rootView, id);
-      if (welcomeText == null) {
-        break missingId;
-      }
-
-      return new ActivityMainBinding((ConstraintLayout) rootView, unlockButton, webview,
-          welcomeText);
+      return new ActivityMainBinding((ConstraintLayout) rootView, copyrightText,
+          instructionsContainer, instructionsText, logoImage, unlockButton, webview);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
