@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private val lockTaskChecker = object : Runnable {
         override fun run() {
             checkAndEnforceLockTask()
-            handler.postDelayed(this, 2000)
+            handler.postDelayed(this, 500)
         }
     }
 
