@@ -1,0 +1,4 @@
+#Sun Sep 21 16:53:29 WIB 2025
+base.0=D\:\\Hasil Coding\\Android Rushsafer\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
